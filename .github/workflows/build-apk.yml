@@ -5,11 +5,14 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
-    name: Build Flutter APK
+    name: Build & Release Flutter APK
     runs-on: ubuntu-latest
 
     steps:
@@ -46,3 +49,16 @@ jobs:
           path: flutter_blockbusters/build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
           retention-days: 30
+
+      - name: Create or Update GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        with:
+          tag_name: v1.0.0
+          name: "BLOCKbusters Mobile APK v1.0.0"
+          body: |
+            ### 🎮 BLOCKbusters Android Release
+            - Download `app-release.apk` below directly onto your Android device to install and play.
+          files: flutter_blockbusters/build/app/outputs/flutter-apk/app-release.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
