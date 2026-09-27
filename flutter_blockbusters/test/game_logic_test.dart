@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_blockbusters/constants/game_config.dart';
 import 'package:flutter_blockbusters/models/block_shape.dart';
-import 'package:flutter_blockbusters/models/placed_cell.dart';
 import 'package:flutter_blockbusters/utils/board_logic.dart';
 import 'package:flutter_blockbusters/utils/block_generator.dart';
 

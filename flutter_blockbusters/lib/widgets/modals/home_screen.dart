@@ -24,7 +24,7 @@ class HomeScreenWidget extends StatelessWidget {
                 GestureDetector(
                   onTap: () => vm.openModal(ActiveModal.username),
                   child: Container(
-                    margin: const EdgeInsets.bottom: 24,
+                    margin: const EdgeInsets.only(bottom: 24),
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
                       color: const Color(0xFF1E293B).withOpacity(0.8),
